@@ -6,25 +6,28 @@ import { runPythonCode } from './runPythonCode';
 import { IFilePaths } from './types';
 import { runJuliaCode } from './runJuliaCode';
 
-const main = async () => {
-  // message
+const showHelp = (errorMsg: string) => {
   console.log(`
+  ERROR: ${errorMsg}
 
   usage:
           mdxcode filename.md outputDir {true,false}
 
   where:
           {true,false} indicates to run the code or not
-
   `);
+};
 
+const main = async () => {
   // arguments
   const args = process.argv.slice(2);
   if (args.length < 1) {
-    throw new Error('ERROR: filename.md is required');
+    showHelp('filename.md is missing');
+    return;
   }
   if (args.length < 2) {
-    throw new Error('ERROR: outputDir is required');
+    showHelp('outputDir is missing');
+    return;
   }
   const filepath = args[0];
   const outDir = args[1];
