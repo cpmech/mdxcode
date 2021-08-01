@@ -1,23 +1,18 @@
-# Introduction to the finite differences method
+# Test
 
-Let us approximate the derivative of $y(x)$ at a node $n$ using finite differences (see @Fig:fdm-1d):
+## Python code
 
-$$
-\text{forward difference:}\quad
-\At{\diF{y}{x}}{x_n} \approx \frac{y_r-y_n}{\Delta x}
-$$
+For example:
 
-$$
-\text{backward difference:}\quad
-\At{\diF{y}{x}}{x_n} \approx \frac{y_n-y_l}{\Delta x}
-$$
+```python
+print('generate y-x graph using Python')
+x = np.linspace(0, 2*np.pi, 31)
+y = np.sin(x)
+plt.plot(x, y)
+plt.show()
+```
 
-$$
-\text{central difference:}\quad
-\At{\diF{y}{x}}{x_n} \approx \frac{y_r-y_l}{2\,\Delta x}
-$$
-
-![Finite differences](figures/fdm-1d.png){#fig:fdm-1d width=250px}
+## Julia code
 
 For example:
 

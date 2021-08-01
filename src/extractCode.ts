@@ -1,13 +1,22 @@
+import { hasProp } from '@cpmech/basic';
 import marked, { Renderer } from 'marked';
 
-export const runMarked = (md: string, runCode: boolean): string[] => {
+export type ICodes = { [language: string]: string[] };
+
+export const extractCode = (md: string): ICodes => {
+  // output
+  const output: ICodes = {};
+
   // create custom renderer
   const renderer = new Renderer();
 
   // set renderer function for code
   renderer.code = (code: string, language: string) => {
-    console.log(code);
-
+    if (hasProp(output, language)) {
+      output[language].push(code);
+    } else {
+      output[language] = [code];
+    }
     return '';
   };
 
@@ -17,7 +26,6 @@ export const runMarked = (md: string, runCode: boolean): string[] => {
   });
 
   // results
-  const res = marked(md);
-  console.log(res);
-  return [];
+  marked(md);
+  return output;
 };
