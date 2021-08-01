@@ -11,7 +11,7 @@ const main = async () => {
   console.log(`
 
   usage:
-          mdXcode filename.md outputDir {true,false}
+          mdxcode filename.md outputDir {true,false}
 
   where:
           {true,false} indicates to run the code or not
