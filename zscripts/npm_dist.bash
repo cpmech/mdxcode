@@ -36,6 +36,7 @@ change() {
 
 # change version
 change package.json
+change package-dist.json
 
 # compile code
 echo
@@ -46,12 +47,15 @@ npm run build
 # publish
 echo
 echo "🚀 Publishing"
+cp package-dist.json dist/package.json
+cd dist
 npm publish --access=public
 
 # git tag
 echo
 echo "🏷️ Tagging"
-git add package.json
+cd ..
+git add package.json package-dist.json
 git tag v`jq -r '.version' package.json`
 git commit -m 'Publish' && git push && git push --tags
 
