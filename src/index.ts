@@ -46,10 +46,11 @@ const main = async () => {
   const res = extractCode(mdText);
 
   // save files
+  let index = 0;
   for (const [key, array] of Object.entries(res)) {
     const ext = key.match(/(julia)/) ? 'jl' : key.match(/(python)/) ? 'py' : 'txt';
-    array.forEach((code, index) => {
-      const fnKey = `${ext}-code${index}`;
+    array.forEach((code) => {
+      const fnKey = `${mdKey}-code${index}`;
       const codePath = `${outDir}/${fnKey}.${ext}`;
       maybeWriteFile(true, codePath, () => code);
       console.log(`file <${codePath}> written`);
@@ -68,6 +69,7 @@ const main = async () => {
           console.log(`file <${res.outPath}> written`);
         }
       }
+      index += 1;
     });
   }
 };
