@@ -12,7 +12,7 @@
     "dist/mdxcode.js"
   ],
   "bin": {
-    "mdxcode": "mdxcode.js"
+    "mdxcode": "dist/mdxcode.js"
   },
   "scripts": {
     "tsnode": "ts-node -O '{\"module\":\"commonjs\",\"resolveJsonModule\":true}'",
