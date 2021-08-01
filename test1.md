@@ -38,3 +38,13 @@ end
 ```
 
 where we can see that the central difference calculates values closer to the correct solution.
+
+## Another Julia code
+
+```julia
+using Gadfly
+x = collect(0:0.1:1)
+y = x.^2
+plt = plot(x=x, y=y, Geom.line)
+draw(SVG("myplot.svg"), plt)
+```

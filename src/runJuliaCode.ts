@@ -2,7 +2,7 @@ import { maybeWriteFile } from '@cpmech/basic-sys';
 import { execSync } from 'child_process';
 import { IFilePaths } from './types';
 
-const pltSvgRegex = new RegExp(/SVG\(\)/, 'mg');
+const pltSvgRegex = new RegExp(/draw\(SVG\(.*\), plt\)/, 'mg');
 
 const fixCodeForExecution = (
   code: string,
@@ -15,7 +15,7 @@ const fixCodeForExecution = (
       throw new Error('code can contain at most one SVG command');
     }
     const figPath = `${outDir}/${fnKey}.svg`;
-    const updated = code.replace(pltSvgRegex, `SVG("${figPath}")`);
+    const updated = code.replace(pltSvgRegex, `draw(SVG("${figPath}"), plt)`);
     return {
       exeCode: updated,
       figPath,
